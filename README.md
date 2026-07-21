@@ -1,4 +1,4 @@
-# CloudWise-Intelligent-Cloud-Cost-Optimizer
+# CloudWise-Intelligent-Cloud-Cost-Optimizer 
 # ☁️ CloudWise - Intelligent Cloud Cost Optimizer
 
 CloudWise is a simple cloud cost optimization application built to practice cloud technologies, backend development, REST APIs, and database management.
