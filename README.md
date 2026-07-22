@@ -18,6 +18,7 @@ The application allows users to manage cloud services, track monthly cloud costs
 
 ---
 
+
 ## 🛠️ Tech Stack
 
 ### Frontend
