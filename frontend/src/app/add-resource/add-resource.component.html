@@ -1,0 +1,76 @@
+<div class="page-container">
+  <h1 class="page-title">Add New Resource</h1>
+
+  <div class="form-card">
+    <div class="error-banner" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <form (ngSubmit)="submit()" #form="ngForm" novalidate>
+      <div class="form-group">
+        <label for="resourceName">Resource Name <span class="required">*</span></label>
+        <input
+          type="text"
+          id="resourceName"
+          name="resourceName"
+          [(ngModel)]="model.resourceName"
+          placeholder="e.g. EC2 Web Server"
+          required />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="resourceType">Resource Type <span class="required">*</span></label>
+          <select id="resourceType" name="resourceType" [(ngModel)]="model.resourceType">
+            <option *ngFor="let t of resourceTypes" [value]="t">{{ t }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="region">Region <span class="required">*</span></label>
+          <select id="region" name="region" [(ngModel)]="model.region">
+            <option *ngFor="let r of regions" [value]="r">{{ r }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="status">Status <span class="required">*</span></label>
+          <select id="status" name="status" [(ngModel)]="model.status">
+            <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="monthlyCost">Monthly Cost (₹) <span class="required">*</span></label>
+          <input
+            type="number"
+            id="monthlyCost"
+            name="monthlyCost"
+            min="0"
+            step="0.01"
+            [(ngModel)]="model.monthlyCost"
+            placeholder="e.g. 4500"
+            required />
+        </div>
+      </div>
+
+      <!-- Note explaining that the recommendation is auto-generated -->
+      <div class="info-note">
+        Recommendation is generated automatically based on the monthly cost.
+        <ul>
+          <li>Monthly cost &gt; ₹5,000 → <strong>High Cost Resource</strong></li>
+          <li>Otherwise → <strong>Normal Resource</strong></li>
+        </ul>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" [disabled]="submitting">
+          {{ submitting ? 'Saving...' : 'Save Resource' }}
+        </button>
+        <a routerLink="/resources" class="btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

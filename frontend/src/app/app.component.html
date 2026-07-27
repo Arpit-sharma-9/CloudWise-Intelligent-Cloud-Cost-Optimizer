@@ -1,0 +1,27 @@
+<!-- Blue header with navigation -->
+<header class="app-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-logo">☁</div>
+      <div class="brand-text">
+        <div class="brand-name">{{ title }}</div>
+        <div class="brand-subtitle">{{ subtitle }}</div>
+      </div>
+    </div>
+
+    <nav class="app-nav">
+      <a routerLink="/dashboard" routerLinkActive="active-link">Dashboard</a>
+      <a routerLink="/resources" routerLinkActive="active-link">Resources</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Routed pages appear here -->
+<main class="app-main">
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Simple footer -->
+<footer class="app-footer">
+  <p>CloudWise &copy; 2026 &middot; Built with Spring Boot + Angular &middot; For learning and portfolio purposes</p>
+</footer>

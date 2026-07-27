@@ -1,0 +1,72 @@
+<div class="page-container">
+  <h1 class="page-title">Edit Resource</h1>
+
+  <div class="empty-state" *ngIf="loading">Loading resource...</div>
+
+  <div class="form-card" *ngIf="!loading">
+    <div class="error-banner" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <form (ngSubmit)="submit()" #form="ngForm" novalidate>
+      <div class="form-group">
+        <label for="resourceName">Resource Name <span class="required">*</span></label>
+        <input
+          type="text"
+          id="resourceName"
+          name="resourceName"
+          [(ngModel)]="model.resourceName"
+          placeholder="e.g. EC2 Web Server"
+          required />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="resourceType">Resource Type <span class="required">*</span></label>
+          <select id="resourceType" name="resourceType" [(ngModel)]="model.resourceType">
+            <option *ngFor="let t of resourceTypes" [value]="t">{{ t }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="region">Region <span class="required">*</span></label>
+          <select id="region" name="region" [(ngModel)]="model.region">
+            <option *ngFor="let r of regions" [value]="r">{{ r }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="status">Status <span class="required">*</span></label>
+          <select id="status" name="status" [(ngModel)]="model.status">
+            <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="monthlyCost">Monthly Cost (₹) <span class="required">*</span></label>
+          <input
+            type="number"
+            id="monthlyCost"
+            name="monthlyCost"
+            min="0"
+            step="0.01"
+            [(ngModel)]="model.monthlyCost"
+            required />
+        </div>
+      </div>
+
+      <div class="info-note">
+        Recommendation will be re-generated automatically based on the new monthly cost.
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" [disabled]="submitting">
+          {{ submitting ? 'Saving...' : 'Save Changes' }}
+        </button>
+        <a routerLink="/resources" class="btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
