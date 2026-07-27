@@ -1,0 +1,85 @@
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Maven Start Up Batch script
+#
+# This is a standard Maven Wrapper script. It downloads Maven on first use
+# and runs the project's Maven build with the specified goals.
+# ----------------------------------------------------------------------------
+
+# Based on the official Apache Maven Wrapper 3.3.2
+
+set -e
+
+# OS specific support
+cygwin=false
+darwin=false
+mingw=false
+case "$(uname)" in
+  CYGWIN*) cygwin=true ;;
+  MINGW*) mingw=true ;;
+  Darwin*) darwin=true ;;
+esac
+
+# Determine the project base directory
+PRG="$0"
+while [ -h "$PRG" ] ; do
+  ls=$(ls -ld "$PRG")
+  link=$(expr "$ls" : '.*-> \(.*\)$')
+  if expr "$link" : '/.*' > /dev/null; then
+    PRG="$link"
+  else
+    PRG=$(dirname "$PRG")"/$link"
+  fi
+done
+SAVED="$(pwd)"
+cd "$(dirname "$PRG")/" >/dev/null
+APP_HOME="$(pwd -P)"
+cd "$SAVED" >/dev/null
+
+# MAVEN_PROJECTBASEDIR is the project's root directory
+MAVEN_PROJECTBASEDIR="${MAVEN_BASEDIR:-$APP_HOME}"
+
+if [ -f "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar" ]; then
+  MAVEN_WRAPPER_JAR="$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar"
+elif [ -f "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.properties" ]; then
+  MAVEN_WRAPPER_JAR=""
+  while IFS="=" read -r key value; do
+    case "$key" in (wrapperUrl) MAVEN_WRAPPER_JAR="$value"; break ;;
+    esac
+  done < "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.properties"
+  if [ -z "$MAVEN_WRAPPER_JAR" ]; then
+    MAVEN_WRAPPER_JAR="https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.3.2/maven-wrapper-3.3.2.jar"
+  fi
+fi
+
+# Download maven-wrapper.jar if not present
+if [ ! -e "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar" ] && [ -n "$MAVEN_WRAPPER_JAR" ]; then
+  if command -v curl > /dev/null 2>&1; then
+    curl -fsSL -o "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar" "$MAVEN_WRAPPER_JAR"
+  elif command -v wget > /dev/null 2>&1; then
+    wget -q -O "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar" "$MAVEN_WRAPPER_JAR"
+  else
+    echo "Error: Need curl or wget to download Maven Wrapper" >&2
+    exit 1
+  fi
+fi
+
+# Use JAVA_HOME if set, otherwise rely on PATH
+if [ -n "$JAVA_HOME" ] ; then
+  if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
+    JAVACMD="$JAVA_HOME/jre/sh/java"
+  else
+    JAVACMD="$JAVA_HOME/bin/java"
+  fi
+  if [ ! -x "$JAVACMD" ] ; then
+    die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME"
+  fi
+else
+  JAVACMD="java"
+  which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and 'java' could not be found in your PATH."
+fi
+
+# Run Maven with the wrapper class
+exec "$JAVACMD" \
+  -classpath "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar" \
+  org.apache.maven.wrapper.MavenWrapperMain "$@"
