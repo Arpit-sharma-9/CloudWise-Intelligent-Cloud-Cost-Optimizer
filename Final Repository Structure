@@ -1,0 +1,40 @@
+CloudWise-Intelligent-Cloud-Cost-Optimizer/
+├── **README.md** (Project overview, setup instructions)
+├── **.gitignore** (Ignores IDE, build, and environment files)
+├── **backend/**
+│   ├── pom.xml (Spring Boot dependencies)
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/cloudwise/
+│   │   │   │   ├── config/
+│   │   │   │   │   └── AWSConfig.java (AWS SDK configuration)
+│   │   │   │   ├── controllers/
+│   │   │   │   │   ├── UserController.java (User authentication endpoints)
+│   │   │   │   │   └── AWSController.java (AWS resource endpoints)
+│   │   │   │   ├── models/
+│   │   │   │   │   ├── User.java (User entity)
+│   │   │   │   │   ├── AWSResource.java (AWS resource entity)
+│   │   │   │   │   └── Recommendation.java (Recommendation entity)
+│   │   │   │   ├── repositories/
+│   │   │   │   │   ├── UserRepository.java (User repository)
+│   │   │   │   │   ├── AWSResourceRepository.java (AWS resource repository)
+│   │   │   │   │   └── RecommendationRepository.java (Recommendation repository)
+│   │   │   │   └── services/
+│   │   │   │       ├── UserService.java (User authentication logic)
+│   │   │   │       └── AWSService.java (AWS resource discovery and cost analysis)
+│   │   │   └── resources/
+│   │   │       ├── application.properties (AWS and database configuration)
+│   │   │       └── schema.sql (MySQL schema)
+│   │   └── test/
+│   └── mvnw (Maven wrapper)
+└── **frontend/**
+    ├── public/
+    │   └── index.html (HTML template for React)
+    ├── src/
+    │   ├── components/
+    │   │   ├── Login.js (User login page)
+    │   │   └── Dashboard.js (Dashboard to display cloud costs and resources)
+    │   ├── App.js (React routing)
+    │   ├── index.js (React entry point)
+    │   └── styles.css (Basic styling)
+    └── package.json (React dependencies)
