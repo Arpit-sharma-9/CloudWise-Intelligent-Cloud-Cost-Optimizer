@@ -35,6 +35,6 @@ CloudWise-Intelligent-Cloud-Cost-Optimizer/
     │   │   ├── Login.js (User login page)
     │   │   └── Dashboard.js (Dashboard to display cloud costs and resources)
     │   ├── App.js (React routing)
-    │   ├── index.js (React entry point)
+    │   ├── index.js (React entry point) 
     │   └── styles.css (Basic styling)
     └── package.json (React dependencies)
