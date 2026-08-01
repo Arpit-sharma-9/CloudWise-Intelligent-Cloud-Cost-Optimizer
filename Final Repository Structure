@@ -1,4 +1,4 @@
-CloudWise-Intelligent-Cloud-Cost-Optimizer/ 
+CloudWise-Intelligent-Cloud-Cost-Optimizer/
 ├── **README.md** (Project overview, setup instructions)
 ├── **.gitignore** (Ignores IDE, build, and environment files)
 ├── **backend/**
