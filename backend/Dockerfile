@@ -1,4 +1,4 @@
-# Dockerfile for CloudWise Backend (Spring Boot)
+# Dockerfile for CloudWise Backend (Spring Boot) 
 # Use a multi-stage build to reduce final image size
 
 # Stage 1: Build the application
