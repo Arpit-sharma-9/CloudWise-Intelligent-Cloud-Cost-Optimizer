@@ -1,22 +1,22 @@
--- CloudWise Database Schema
+-- CloudWise Database Schema (SQLite Compatible)
 
 -- Users Table
 CREATE TABLE IF NOT EXISTS users (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL,
-    role ENUM('ADMIN', 'USER', 'FINANCE') NOT NULL,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    role TEXT NOT NULL CHECK(role IN ('ADMIN', 'USER', 'FINANCE')),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- AWS Resources Table
 CREATE TABLE IF NOT EXISTS aws_resources (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    user_id BIGINT NOT NULL,
-    resource_type ENUM('EC2', 'S3', 'RDS', 'EBS', 'LAMBDA', 'VPC', 'ELASTIC_IP') NOT NULL,
-    resource_id VARCHAR(100) NOT NULL,
-    resource_name VARCHAR(100),
-    region VARCHAR(50),
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    resource_type TEXT NOT NULL CHECK(resource_type IN ('EC2', 'S3', 'RDS', 'EBS', 'LAMBDA', 'VPC', 'ELASTIC_IP')),
+    resource_id TEXT NOT NULL,
+    resource_name TEXT,
+    region TEXT,
     cost DECIMAL(10, 2) DEFAULT 0.00,
     cpu_utilization DECIMAL(5, 2),
     memory_usage DECIMAL(5, 2),
@@ -28,20 +28,20 @@ CREATE TABLE IF NOT EXISTS aws_resources (
 
 -- Recommendations Table
 CREATE TABLE IF NOT EXISTS recommendations (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    resource_id BIGINT NOT NULL,
-    recommendation_type ENUM('RIGHTSIZE', 'STOP', 'DELETE', 'MOVE_STORAGE', 'DOWN_SIZE') NOT NULL,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    resource_id INTEGER NOT NULL,
+    recommendation_type TEXT NOT NULL CHECK(recommendation_type IN ('RIGHTSIZE', 'STOP', 'DELETE', 'MOVE_STORAGE', 'DOWN_SIZE')),
     description TEXT NOT NULL,
     estimated_savings DECIMAL(10, 2) DEFAULT 0.00,
-    status ENUM('PENDING', 'APPROVED', 'REJECTED', 'EXECUTED') DEFAULT 'PENDING',
+    status TEXT DEFAULT 'PENDING' CHECK(status IN ('PENDING', 'APPROVED', 'REJECTED', 'EXECUTED')),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (resource_id) REFERENCES aws_resources(id) ON DELETE CASCADE
 );
 
 -- Cost History Table
 CREATE TABLE IF NOT EXISTS cost_history (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    user_id BIGINT NOT NULL,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
     total_cost DECIMAL(10, 2) NOT NULL,
     recorded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE

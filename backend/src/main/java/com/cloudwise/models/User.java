@@ -18,14 +18,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role;
+    private String role;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
-
-    public enum Role {
-        ADMIN, USER, FINANCE
-    }
 }

@@ -16,9 +16,8 @@ public class AWSResource {
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "resource_type", nullable = false)
-    private ResourceType resourceType;
+    private String resourceType;
 
     @Column(name = "resource_id", nullable = false)
     private String resourceId;
@@ -46,8 +45,4 @@ public class AWSResource {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
-
-    public enum ResourceType {
-        EC2, S3, RDS, EBS, LAMBDA, VPC, ELASTIC_IP
-    }
 }
