@@ -1,4 +1,4 @@
-# CloudWise – Intelligent Cloud Cost Optimizer
+# CloudWise – Intelligent Cloud Cost Optimizer 
 
 ## **Project Overview**
 CloudWise is a cloud management platform that continuously monitors AWS resources, analyzes cloud spending, identifies unnecessary costs, and provides intelligent recommendations to reduce monthly cloud bills without affecting application performance.
